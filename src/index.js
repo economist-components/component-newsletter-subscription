@@ -18,32 +18,29 @@ function checkStatus(response) {
   return response;
 }
 
-
 export function NewsletterSubscriptionSubmit() {
-  return true;
+  return null;
 }
 
 if (process.env.NODE_ENV !== 'production') {
   NewsletterSubscriptionSubmit.propTypes = {
     className: React.PropTypes.string,
-    children: React.PropTypes.node,
     value: React.PropTypes.string,
   };
 }
 
 export function NewsletterSubscriptionEmail() {
-  return true;
+  return null;
 }
 
 if (process.env.NODE_ENV !== 'production') {
   NewsletterSubscriptionEmail.propTypes = {
     className: React.PropTypes.string,
     placeholder: React.PropTypes.string,
-    children: React.PropTypes.node,
   };
 }
 
-export class NewsletterSubscription extends React.Component {
+export default class NewsletterSubscription extends React.Component {
   constructor() {
     super();
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -125,30 +122,33 @@ export class NewsletterSubscription extends React.Component {
             children: message,
           });
         }
-      }
-      if (child.type === NewsletterSubscriptionEmail) {
-        newChild = (<Validation.Input
-          className={child.props.className}
-          name="email"
-          type="email"
-          invalidClassName={`${ child.props.className }__email--error`}
-          blocking="input"
-          placeholder={child.props.placeholder}
-          validations={[
-            {
-              rule: 'isRequired',
-              errorMessage: 'E-mail is mandatory',
-            },
-            {
-              rule: 'isEmail',
-              errorMessage: 'E-mail not valid',
-            },
-          ]}
-        />);
-      }
-      if (child.type === NewsletterSubscriptionSubmit) {
-        newChild = (  <Validation.Button
+      } else if (child.type === NewsletterSubscriptionEmail) {
+        newChild = (
+          <Validation.Input
+            className={child.props.className}
+            name="email"
+            type="email"
+            key="email"
+            invalidClassName={`${ child.props.className }__email--error`}
+            blocking="input"
+            placeholder={child.props.placeholder}
+            validations={[
+              {
+                rule: 'isRequired',
+                errorMessage: 'E-mail is mandatory',
+              },
+              {
+                rule: 'isEmail',
+                errorMessage: 'E-mail not valid',
+              },
+            ]}
+          />
+        );
+      } else if (child.type === NewsletterSubscriptionSubmit) {
+        newChild = (
+          <Validation.Button
             blocking="button"
+            key="submit-button"
             value={child.props.value}
             className={child.props.className}
           >

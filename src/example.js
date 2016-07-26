@@ -1,6 +1,6 @@
 import 'babel-polyfill';
 import React from 'react';
-import { NewsletterSubscription, NewsletterSubscriptionSubmit, NewsletterSubscriptionEmail } from './';
+import NewsletterSubscription, { NewsletterSubscriptionSubmit, NewsletterSubscriptionEmail } from './';
 import NewsletterSubscriptionMessage from './newsletter-subscription-message';
 
 export default (
