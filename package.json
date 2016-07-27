@@ -99,11 +99,8 @@
     ]
   },
   "dependencies": {
-    "classnames": "^2.2.5",
     "form-serialize": "^0.7.1",
     "react": "^0.14.8||^15.0.0",
-    "react-validation": "^1.7.5",
-    "validator": "^5.5.0",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {

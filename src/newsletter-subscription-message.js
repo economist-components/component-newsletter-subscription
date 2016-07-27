@@ -1,18 +1,16 @@
 import React from 'react';
-import classNames from 'classnames';
 
-export default function NewsletterSubscriptionMessage(props) {
+export default function Message(props) {
   return (
-    <p className={classNames(props.className, props.classNameModifiers)}>
+    <p className={props.className}>
       {props.children}
     </p>
   );
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  NewsletterSubscriptionMessage.propTypes = {
+  Message.propTypes = {
     className: React.PropTypes.string,
-    classNameModifiers: React.PropTypes.string,
     children: React.PropTypes.string,
   };
 }

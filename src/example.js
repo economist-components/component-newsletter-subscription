@@ -1,21 +1,24 @@
 import 'babel-polyfill';
 import React from 'react';
-import NewsletterSubscription, { NewsletterSubscriptionSubmit, NewsletterSubscriptionEmail } from './';
-import NewsletterSubscriptionMessage from './newsletter-subscription-message';
+import NewsletterSubscription from './';
 
 export default (
-  <NewsletterSubscription action="/api/newsletter-subscription">
+  <NewsletterSubscription.Form
+    action="/api/newsletter-subscription"
+    validationDelay={500}
+    className="newsletter-subscription__form"
+  >
     <input type="hidden" name="list" value="dev-wif-list" />
-    <NewsletterSubscriptionMessage
+    <NewsletterSubscription.Message
       className="newsletter-subscription__message"
     />
-    <NewsletterSubscriptionEmail
+    <NewsletterSubscription.Email
       className="newsletter-subscription__email"
       placeholder="Your e-mail here"
     />
-    <NewsletterSubscriptionSubmit
+    <NewsletterSubscription.Submit
       value="Submit this form"
       className="newsletter-subscription__submit-button"
     />
-  </NewsletterSubscription>
+  </NewsletterSubscription.Form>
 );
