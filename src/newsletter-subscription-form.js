@@ -1,3 +1,4 @@
+/* global fetch */
 import React from 'react';
 import serialize from 'form-serialize';
 import 'whatwg-fetch';
@@ -59,7 +60,6 @@ export default class Form extends React.Component {
   }
   handleFormSubmit(event) {
     event.preventDefault();
-    /* eslint-disable no-undef */
     fetch(this.props.action, {
       method: 'POST',
       body: serialize(event.target),
@@ -92,7 +92,6 @@ export default class Form extends React.Component {
       };
       this.setState(answer);
     });
-    /* eslint-enable no-undef */
   }
   render() {
     let message = null;
