@@ -22,11 +22,7 @@ export default class Form extends React.Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleValidation = this.handleValidation.bind(this);
-  }
-  componentWillMount() {
-    this.setState({
-      answer: null,
-    });
+    this.setState({ answer: null });
   }
   checkEmail(email) {
     /* eslint-disable max-len */
