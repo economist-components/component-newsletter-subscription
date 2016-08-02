@@ -8,7 +8,7 @@ import Email from './newsletter-subscription-email';
 function checkStatus(response) {
   const httpStatusOK = 200;
   const httpStatusMultipleChoices = 300;
-  if (response.status < httpStatusOK && response.status >= httpStatusMultipleChoices) {
+  if (response.status < httpStatusOK || response.status >= httpStatusMultipleChoices) {
     const connectionError = new Error(response.statusText);
     connectionError.response = response;
     throw connectionError;
