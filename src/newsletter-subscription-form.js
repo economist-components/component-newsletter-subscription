@@ -18,8 +18,8 @@ function checkStatus(response) {
 
 let timeout = null;
 export default class Form extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleValidation = this.handleValidation.bind(this);
   }
