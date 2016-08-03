@@ -63,28 +63,23 @@ export default class Form extends React.Component {
     let message = null;
     let messageClassNameModifier = '';
     const children = [];
-    /* eslint-disable complexity */
     this.props.children.forEach((child) => {
-    /* eslint-enable complexity */
       let newChild = child;
-      if (child.type === Message) {
-        if (this.state.answer || this.state.validation) {
-          if (this.state.answer) {
-            message = this.state.answer.message;
-            messageClassNameModifier = (this.state.answer.subscriptionError) ? '--error' : '--success';
-          } else if (this.state.validation) {
-            message = this.state.validation.message;
-            messageClassNameModifier = (this.state.validation.isValidEmail) ? '--is-valid' : '--is-not-valid';
-          }
-          /* eslint-disable max-len */
-          const messageElementClassNameModifier = (messageClassNameModifier) ? ` ${ this.props.className }${ messageClassNameModifier }` : '';
-          /* eslint-enable max-len */
-          newChild = React.cloneElement(child, {
-            className: `child.props.className ${ messageElementClassNameModifier }`,
-            children: message,
-            key: 'message',
-          });
+      if (child.type === Message && (this.state.answer || this.state.validation)) {
+        if (this.state.answer) {
+          message = this.state.answer.message;
+          messageClassNameModifier = (this.state.answer.subscriptionError) ? '--error' : '--success';
+        } else if (this.state.validation) {
+          message = this.state.validation.message;
+          messageClassNameModifier = (this.state.validation.isValidEmail) ? '--is-valid' : '--is-not-valid';
         }
+        const messageElementClassNameModifier = (messageClassNameModifier) ?
+          ` ${ this.props.className }${ messageClassNameModifier }` : '';
+        newChild = React.cloneElement(child, {
+          className: `child.props.className ${ messageElementClassNameModifier }`,
+          children: message,
+          key: 'message',
+        });
       } else if (child.type === Submit) {
         newChild = React.cloneElement(child, Object.assign(
           {},
@@ -106,9 +101,8 @@ export default class Form extends React.Component {
       }
       children.push(newChild);
     });
-    /* eslint-disable max-len */
-    const formClassNameModifier = (messageClassNameModifier) ? ` ${ this.props.className }${ messageClassNameModifier }` : '';
-    /* eslint-enable max-len */
+    const formClassNameModifier = (messageClassNameModifier) ?
+      ` ${ this.props.className }${ messageClassNameModifier }` : '';
     return (
       <form
         className={`${ this.props.className }${ formClassNameModifier }`}
