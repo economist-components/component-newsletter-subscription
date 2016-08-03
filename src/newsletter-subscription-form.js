@@ -17,46 +17,15 @@ function checkStatus(response) {
   return response;
 }
 
-let timeout = null;
 export default class Form extends React.Component {
   constructor(props) {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    this.handleValidation = this.handleValidation.bind(this);
-    this.setState({ answer: null });
+    this.handleValidationMessage = this.handleValidationMessage.bind(this);
+    this.state = { answer: null };
   }
-  checkEmail(email) {
-    /* eslint-disable max-len */
-    const emailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    /* eslint-enable max-len */
-    let message = '';
-    let isValidEmail = true;
-    if (!emailRegEx.test(email)) {
-      message = 'Email not valid';
-      isValidEmail = false;
-    }
-
-    return {
-      message,
-      isValidEmail,
-    };
-  }
-  handleValidation() {
-    const email = this.refs.newsletterSubscribeForm.querySelector('[type=email]').value;
-    if (email !== '') {
-      if (timeout !== null) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        const validationResult = this.checkEmail(email);
-        this.setState({
-          validation: {
-            isValidEmail: validationResult.isValidEmail,
-            message: validationResult.message,
-          },
-        });
-      }, this.props.validationDelay);
-    }
+  handleValidationMessage(validationResult) {
+    this.setState(validationResult);
   }
   handleFormSubmit(event) {
     event.preventDefault();
@@ -83,14 +52,11 @@ export default class Form extends React.Component {
         answer,
       });
     }).catch((connectionError) => {
-      /* eslint-disable no-console */
-      console.log('Request failed', connectionError);
-      /* eslint-enable no-console */
       const answer = {
         subscriptionError: true,
-        message: connectionError,
+        message: `Error communicating with the server: ${ connectionError.message }`,
       };
-      this.setState(answer);
+      this.setState({ answer });
     });
   }
   render() {
@@ -133,7 +99,7 @@ export default class Form extends React.Component {
           {},
           child.props,
           {
-            handleValidation: this.handleValidation,
+            validateEmail: this.handleValidationMessage,
             key: 'email',
           }
         ));
@@ -162,7 +128,6 @@ Form.defaultProps = {
   children: null,
   className: 'newsletter-subscription',
   successMessage: 'Thank you for subscribe',
-  validationDelay: 1000,
 };
 
 if (process.env.NODE_ENV !== 'production') {
@@ -175,6 +140,5 @@ if (process.env.NODE_ENV !== 'production') {
     className: React.PropTypes.string,
     successMessage: React.PropTypes.string,
     action: React.PropTypes.string,
-    validationDelay: React.PropTypes.number,
   };
 }
