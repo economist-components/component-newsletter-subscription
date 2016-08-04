@@ -6,7 +6,7 @@ export default function Submit(props) {
       type="submit"
       value={props.value}
       className={props.className}
-      disabled={(props.disable) ? 'disabled' : null}
+      disabled={props.disable}
     />
   );
 }

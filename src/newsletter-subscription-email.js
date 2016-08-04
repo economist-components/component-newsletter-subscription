@@ -1,6 +1,6 @@
 import React from 'react';
 import isEmail from 'validator/lib/isEmail';
-let timeout = null;
+import debounce from 'lodash.debounce';
 function checkEmail(email) {
   let message = '';
   let isValidEmail = true;
@@ -18,35 +18,34 @@ function checkEmail(email) {
 export default class Email extends React.Component {
   constructor(props) {
     super(props);
-    this.handleValidation = this.handleValidation.bind(this);
+    this.handleValidation = debounce(this.handleValidation, this.props.validationDelay).bind(this);
+    this.state = { isValidEmail: false };
   }
   handleValidation() {
     const email = this.refs.email.value;
-    if (email !== '') {
-      if (timeout !== null) {
-        clearTimeout(timeout);
-      }
-      timeout = setTimeout(() => {
-        const validationResult = checkEmail(email);
-        this.props.validateEmail({
-          validation: {
-            isValidEmail: validationResult.isValidEmail,
-            message: validationResult.message,
-          },
-        });
-      }, this.props.validationDelay);
+    if (email === '') {
+      return false;
     }
+    const validationResult = checkEmail(email);
+    this.props.validateEmail({
+      validation: {
+        isValidEmail: validationResult.isValidEmail,
+        message: validationResult.message,
+      },
+    });
+    this.setState({ isValidEmail: validationResult.isValidEmail });
+    return true;
   }
   render() {
     return (
       <input
-        className={this.props.className}
+        className={`this.props.className this.props.className${ this.state.isValidEmail ? '--valid' : '--invalid' }`}
         name="email"
         type="email"
         ref="email"
         placeholder={this.props.placeholder}
         onKeyUp={this.handleValidation}
-        onBlur={this.handleValidation}
+        onChange={this.handleValidation}
       />
     );
   }

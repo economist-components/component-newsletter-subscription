@@ -22,7 +22,7 @@ export default class Form extends React.Component {
     super(props);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleValidationMessage = this.handleValidationMessage.bind(this);
-    this.state = { answer: null };
+    this.state = { answer: null, validation: true };
   }
   handleValidationMessage(validationResult) {
     this.setState(validationResult);
