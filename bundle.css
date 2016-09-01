@@ -1,3 +1,133 @@
+.newsletter-subscription-right-rail__wrapper {
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
 .newsletter-subscription__form {
+  position: relative;
+  max-width: 272px;
   background: #f1f1f1;
+}
+
+.newsletter-subscription__message {
+  display: none;
+  margin: 0;
+}
+
+.newsletter-subscription__message--success {
+  display: block;
+  position: absolute;
+  width: 272px;
+  height: 39px;
+  margin: 0;
+  line-height: 39px;
+  text-align: center;
+  background-color: #fff600;
+  border: 1px solid #fff600;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+.newsletter-subscription__email {
+  width: 259px;
+  height: 35px;
+  padding-left: 10px;
+  color: #121212;
+  font-family: econsans;
+  font-size: 16px;
+  font-weight: normal;
+  border: 1px solid #b7b7b7;
+  border-radius: 6px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.newsletter-subscription__email:focus {
+  outline: 0;
+  border-color: #38a8e0; /* Blue */
+}
+
+.newsletter-subscription__email::-webkit-input-placeholder {
+  opacity: 1;
+  color: #38a8e0;
+  font-weight: 700;
+}
+
+.newsletter-subscription__email::-moz-placeholder {
+  opacity: 1;
+  color: #38a8e0;
+  font-weight: 700;
+}
+
+.newsletter-subscription__email:-ms-input-placeholder {
+  opacity: 1;
+  color: #38a8e0;
+  font-weight: 700;
+}
+
+.newsletter-subscription__email::placeholder {
+  opacity: 1;
+  color: #38a8e0;
+  font-weight: 700;
+}
+
+.newsletter-subscription__email:focus::-webkit-input-placeholder {
+  opacity: 0.3;
+  color: #121212;
+}
+
+.newsletter-subscription__email:focus::-moz-placeholder {
+  opacity: 0.3;
+  color: #121212;
+}
+
+.newsletter-subscription__email:focus:-ms-input-placeholder {
+  opacity: 0.3;
+  color: #121212;
+}
+
+.newsletter-subscription__email:focus::placeholder {
+  opacity: 0.3;
+  color: #121212;
+}
+
+.newsletter-subscription__submit-button {
+  opacity: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 39px;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  /* stylelint-disable no-indistinguishable-colors */
+  /* no background specified */
+  color: rgba(255, 255, 255, 1);
+  /* stylelint-enable no-indistinguishable-colors */
+  font-family: econsans;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #38a8e0; /* Blue */
+  border: none;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  -webkit-transition: 0.2s;
+  transition: 0.2s;
+}
+
+.newsletter-subscription__submit-button:disabled {
+  opacity: 0;
+  /* stylelint-disable no-indistinguishable-colors */
+  /* no background specified */
+  color: rgba(255, 255, 255, 0.3);
+  /* stylelint-enable no-indistinguishable-colors */
+}
+
+.newsletter-subscription__submit-button:hover {
+  background-color: #39b54a; /* Green */
+}
+
+.ui-hint {
+  display: block;
 }
