@@ -76,7 +76,7 @@ export default class Form extends React.Component {
         const messageElementClassNameModifier = (messageClassNameModifier) ?
           ` ${ this.props.className }${ messageClassNameModifier }` : '';
         newChild = React.cloneElement(child, {
-          className: `child.props.className ${ messageElementClassNameModifier }`,
+          className: `${ child.props.className } ${ messageElementClassNameModifier }`,
           children: message,
           key: 'message',
         });
