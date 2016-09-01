@@ -120,7 +120,7 @@ export default class Form extends React.Component {
 Form.defaultProps = {
   children: null,
   className: 'newsletter-subscription',
-  successMessage: 'Thank you for subscribe',
+  successMessage: 'Thank you for subscribing',
 };
 
 if (process.env.NODE_ENV !== 'production') {
