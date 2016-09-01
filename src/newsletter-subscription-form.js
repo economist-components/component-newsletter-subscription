@@ -73,10 +73,9 @@ export default class Form extends React.Component {
           message = this.state.validation.message;
           messageClassNameModifier = (this.state.validation.isValidEmail) ? '--is-valid' : '--is-not-valid';
         }
-        const messageElementClassNameModifier = (messageClassNameModifier) ?
-          ` ${ this.props.className }${ messageClassNameModifier }` : '';
         newChild = React.cloneElement(child, {
-          className: `child.props.className ${ messageElementClassNameModifier }`,
+          className: `${ child.props.className }
+          ${ messageClassNameModifier ? `${ child.props.className }${ messageClassNameModifier }` : '' }`,
           children: message,
           key: 'message',
         });
