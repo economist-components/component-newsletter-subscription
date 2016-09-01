@@ -39,7 +39,8 @@ export default class Email extends React.Component {
   render() {
     return (
       <input
-        className={`this.props.className this.props.className${ this.state.isValidEmail ? '--valid' : '--invalid' }`}
+        className={`${ this.props.className }
+        ${ this.props.className }${ this.state.isValidEmail ? '--valid' : '--invalid' }`}
         name="email"
         type="email"
         ref="email"

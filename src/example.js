@@ -17,7 +17,7 @@ export default (
       validationDelay={500}
     />
     <NewsletterSubscription.Submit
-      value="Submit this form"
+      value="Submit"
       className="newsletter-subscription__submit-button"
     />
   </NewsletterSubscription.Form>
